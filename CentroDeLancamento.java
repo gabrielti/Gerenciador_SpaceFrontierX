@@ -18,8 +18,6 @@ public class CentroDeLancamento {
         this.combustivelTotalDisponivel = 0;
     }
 
-    // --- Métodos para Adicionar Recursos ---
-
     /**
      * Adiciona uma missão à fila de espera.
      * @param missao A missão a ser adicionada.
@@ -60,17 +58,15 @@ public class CentroDeLancamento {
         }
     }
 
-    // --- Métodos para Gerenciar e Lançar Missões ---
-
     /**
      * Tenta preparar e iniciar a próxima missão na fila.
      * Verifica a disponibilidade de astronauta, foguete e combustível antes de iniciar o lançamento.
-     * @return true se a missão foi preparada e lançada com sucesso, false caso contrário.
+     *
+     * @throws LancamentoAbortadoException se não houver recursos suficientes ou o foguete não estiver pronto.
      */
-    public boolean prepararEIniciarProximaMissao() {
+    public void prepararEIniciarProximaMissao() throws LancamentoAbortadoException {
         if (filaDeMissoes.isEmpty()) {
-            System.out.println("Nenhuma missão na fila para ser lançada.");
-            return false;
+            throw new LancamentoAbortadoException("Nenhuma missão na fila para ser lançada.");
         }
 
         Missao proximaMissao = filaDeMissoes.peek(); // Pega a primeira missão sem removê-la da fila
@@ -81,8 +77,7 @@ public class CentroDeLancamento {
         // 1. Verificar Astronauta
         Astronauta astronautaNecessario = proximaMissao.getAstronautaDesignado();
         if (astronautaNecessario == null || !astronautasDisponiveis.contains(astronautaNecessario)) {
-            System.out.println("ERRO: Astronauta '" + (astronautaNecessario != null ? astronautaNecessario.getNome() : "Nenhum") + "' não está disponível ou não foi designado para esta missão.");
-            return false;
+            throw new LancamentoAbortadoException("Astronauta '" + (astronautaNecessario != null ? astronautaNecessario.getNome() : "Nenhum") + "' não está disponível ou não foi designado para esta missão.");
         }
 
         // 2. Encontrar e verificar Foguete disponível (do tipo ideal)
@@ -96,14 +91,12 @@ public class CentroDeLancamento {
         }
 
         if (fogueteParaLancamento == null) {
-            System.out.println("ERRO: Nenhum foguete do tipo '" + proximaMissao.getFogueteIdeal().getTipo() + "' está disponível e pronto para lançamento.");
-            return false;
+            throw new LancamentoAbortadoException("Nenhum foguete do tipo '" + proximaMissao.getFogueteIdeal().getTipo() + "' está disponível e pronto para lançamento para a missão '" + proximaMissao.getNome() + "'.");
         }
 
         // 3. Verificar Combustível
         if (combustivelTotalDisponivel < proximaMissao.getCombustivelNecessario()) {
-            System.out.println("ERRO: Combustível insuficiente para a missão. Necessário: " + proximaMissao.getCombustivelNecessario() + " litros. Disponível: " + combustivelTotalDisponivel + " litros.");
-            return false;
+            throw new LancamentoAbortadoException("Combustível insuficiente para a missão '" + proximaMissao.getNome() + "'. Necessário: " + proximaMissao.getCombustivelNecessario() + " litros. Disponível: " + combustivelTotalDisponivel + " litros.");
         }
 
         // Se todos os recursos estiverem disponíveis, iniciar a missão
@@ -128,12 +121,8 @@ public class CentroDeLancamento {
         filaDeMissoes.poll();
 
         System.out.println("Missão '" + proximaMissao.getNome() + "' iniciada com sucesso!");
-        System.out.println("Combustível restante no centro: " + combustivelTotalDisponivel + " litros.");
-
-        return true;
+        System.out.println("Combustível restante no centro: " + String.format("%.2f", combustivelTotalDisponivel) + " litros.");
     }
-
-    // --- Métodos para Visualizar o Estado do Centro ---
 
     /**
      * Lista todas as missões atualmente na fila de espera.
