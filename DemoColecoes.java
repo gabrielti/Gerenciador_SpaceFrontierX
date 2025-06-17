@@ -2,10 +2,7 @@ package spacex;
 
 import java.util.ArrayList;
 
-/**
- * Demonstração de como utilizar coleções para agrupar Astronautas e um Foguete
- * em uma mesma “missão” (tópico 6 da Fase 1).
- */
+// Gerenciamento de astronautas e foguetes
 public class DemoColecoes {
     public static void main(String[] args) {
         // --- 1) Cria lista de astronautas (ArrayList<Pessoa>) ---

@@ -1,7 +1,7 @@
 package spacex;
 
 public class Astronauta extends Pessoa {
-    private String especialidade; // Exemplo de atributo extra (opcional)
+    private String especialidade;
 
     public Astronauta(String nome, int idade, String especialidade) {
         super(nome, idade);
@@ -16,9 +16,8 @@ public class Astronauta extends Pessoa {
         this.especialidade = especialidade;
     }
 
-    /**
-     * Método específico de Astronauta para realizar treinamento.
-     */
+    
+    // Método específico de Astronauta para realizar treinamento.
     public void realizarTreinamento() {
         System.out.println("Astronauta " + getNome() 
             + " está realizando treinamento de especialidade: " + especialidade + ".");

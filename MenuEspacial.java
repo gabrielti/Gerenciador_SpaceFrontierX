@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
-// Classes básicas
 class Foguete {
     String nome;
     public Foguete(String nome) { this.nome = nome; }
@@ -35,7 +34,6 @@ class Missao {
     }
 }
 
-// Interface principal
 public class MenuEspacial extends JFrame {
     private ArrayList<Foguete> foguetes = new ArrayList<>();
     private ArrayList<Astronauta> astronautas = new ArrayList<>();
@@ -47,22 +45,16 @@ public class MenuEspacial extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        // Inicialize o CentroDeLancamento
         this.centro = new CentroDeLancamento();
-
-        // **Opcional, mas recomendado:** Popular o centro com alguns foguetes/astronautas iniciais
-        // para facilitar o teste sem ter que cadastrar tudo pela GUI toda vez.
-        // Você pode usar o FogueteParser aqui para carregar do CSV!
         try {
-            // Assumindo que FogueteParser é estático e pode ser chamado assim
             List<Foguete> foguetesIniciais = FogueteParser.parseFoguetesFromCsv("foguetes.csv");
             for (Foguete f : foguetesIniciais) {
                 centro.adicionarFoguete(f);
             }
-            centro.adicionarAstronauta(new Astronauta("Yuri Gagarin", 34)); // Exemplo de astronauta inicial
+            centro.adicionarAstronauta(new Astronauta("Yuri Gagarin", 34));
             centro.adicionarAstronauta(new Astronauta("Valentina Tereshkova", 86));
             centro.adicionarAstronauta(new Astronauta("Neil Armstrong", 40));
-            centro.adicionarCombustivel(10000); // Adiciona combustível inicial
+            centro.adicionarCombustivel(10000);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Erro ao carregar dados iniciais: " + e.getMessage(), "Erro de Inicialização", JOptionPane.ERROR_MESSAGE);
         }
@@ -79,9 +71,9 @@ public class MenuEspacial extends JFrame {
         panelBotoes.add(btnCadastrarFoguete);
         panelBotoes.add(btnCadastrarAstronauta);
         panelBotoes.add(btnCriarMissao);
-        panelBotoes.add(btnListarRecursos); // Adicione o novo botão
+        panelBotoes.add(btnListarRecursos);
 
-        add(panelBotoes, BorderLayout.CENTER); // Use BorderLayout para o painel de botões
+        add(panelBotoes, BorderLayout.CENTER);
 
         setLayout(new GridLayout(3, 1, 10, 10));
         add(btnCadastrarFoguete);

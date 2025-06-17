@@ -1,11 +1,6 @@
 package spacex;
-
-/**
- * Subclasse de Pessoa que representa um Engenheiro.
- * Adiciona o método projetarComponente().
- */
 public class Engenheiro extends Pessoa {
-    private String areaAtuacao; // Exemplo de atributo extra (opcional)
+    private String areaAtuacao;
 
     public Engenheiro(String nome, int idade, String areaAtuacao) {
         super(nome, idade);
@@ -20,9 +15,7 @@ public class Engenheiro extends Pessoa {
         this.areaAtuacao = areaAtuacao;
     }
 
-    /**
-     * Método específico de Engenheiro para projetar componentes.
-     */
+    // Método específico de Engenheiro para projetar componentes.
     public void projetarComponente() {
         System.out.println("Engenheiro " + getNome() 
             + " está projetando um componente na área de " + areaAtuacao + ".");

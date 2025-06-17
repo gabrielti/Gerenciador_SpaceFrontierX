@@ -1,12 +1,7 @@
 package spacex;
-
-/**
- * Subclasse de Foguete que representa o foguete Starship.
- * Implementa o método realizarManutencao().
- */
 public class Starship extends Foguete {
-    private String fabricante;   // Ex.: "SpaceX"
-    private String destino;      // Ex.: "Marte"
+    private String fabricante;
+    private String destino;  
 
     public Starship(String nome, double empuxo, double combustivel, double carga, String status, String destino) {
         super(nome, empuxo, combustivel, carga, status);
@@ -30,9 +25,6 @@ public class Starship extends Foguete {
         this.destino = destino;
     }
 
-    /**
-     * Implementação concreta de realizarManutencao() para Starship.
-     */
     @Override
     public void realizarManutencao() {
         System.out.println("Starship (" + getNome() + "):");

@@ -10,16 +10,14 @@ public class FogueteCSVReader {
     public static ArrayList<Foguete> readFoguetesFromCSV(String filePath) {
         ArrayList<Foguete> foguetes = new ArrayList<>();
         String line;
-        String csvSplitBy = ","; // Delimitador do CSV
+        String csvSplitBy = ",";
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            // Pular a linha do cabeçalho, se houver
-            br.readLine(); 
+            br.readLine();
 
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(csvSplitBy);
 
-                // Certifique-se de que há dados suficientes na linha
                 if (data.length >= 10) {
                     String nome = data[0];
                     double carga = Double.parseDouble(data[1]);

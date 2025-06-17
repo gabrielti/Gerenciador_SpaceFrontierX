@@ -7,7 +7,6 @@ public class LancamentoAbortadoException extends Exception {
         super(message);
     }
 
-    // Opcional: Construtor que aceita uma mensagem e uma causa (outra exceção)
     public LancamentoAbortadoException(String message, Throwable cause) {
         super(message, cause);
     }

@@ -27,7 +27,6 @@ public abstract class Foguete {
         }
         public abstract void lançar() throws LancamentoAbortadoException;
 
-        // Getters e Setters
         public String getNome() {
             return nome;
         }
@@ -129,7 +128,7 @@ public class Falcon9 extends Foguete {
         System.out.println("Empuxo: " + getEmpuxo() + " N");
         System.out.println("Velocidade: " + getVelocidade() + " km/h");
 
-        setCombustivel(getCombustivel() * 0.9); // Simula 10% de consumo na decolagem
+        setCombustivel(getCombustivel() * 0.9);
         setStatus("Em voo");
         System.out.println("Lançamento realizado com sucesso! Foguete " + getNome() + " está em voo.");
         System.out.println("Combustível restante após decolagem: " + getCombustivel() + " L.");
@@ -154,7 +153,7 @@ public class Starship extends Foguete {
         System.out.println("Empuxo: " + getEmpuxo() + " N");
         System.out.println("Velocidade: " + getVelocidade() + " km/h");
 
-        setCombustivel(getCombustivel() * 0.9); // Simula 10% de consumo na decolagem
+        setCombustivel(getCombustivel() * 0.9);
         setStatus("Em voo");
         System.out.println("Lançamento realizado com sucesso! Foguete " + getNome() + " está em voo.");
         System.out.println("Combustível restante após decolagem: " + getCombustivel() + " L.");
